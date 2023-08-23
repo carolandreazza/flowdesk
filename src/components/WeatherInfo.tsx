@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TiWeatherSunny, TiWeatherShower, TiWeatherCloudy, TiWeatherPartlySunny } from 'react-icons/ti';
-import { MdAccessTime } from 'react-icons/md';
 
 const WeatherInfo = () => {
   const [time, setTime] = useState('');
@@ -19,7 +18,7 @@ const WeatherInfo = () => {
           `http://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=1a88a5cb2ed5692e4c95f995f3dfa551&units=metric`
         );
         const data = response.data;
-        const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });;
+        const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         /* const currentTemperature = data.main.temp.toFixed(1); */
         const currentTemperature = Math.round(data.main.temp.toFixed(1));
         const city = data.name;
@@ -87,10 +86,6 @@ const WeatherInfo = () => {
       <div className="flex items-center">  
         <div className="time flex items-center text-2xl pr-8">{time}</div>{/* font-semibold  */}
         <div className="weather-icon text-2xl">{getWeatherIcon()}</div>
-        {/* <div className="weather-info ml-4">
-            <div className="temperature text-2xl font-semibold">{temperature}&deg;C</div>
-            <div className="city text-gray-800 mt-1">{cityName}</div>
-        </div> */}
 
        
         <div className="relative">
