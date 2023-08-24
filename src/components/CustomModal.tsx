@@ -13,6 +13,8 @@ interface CustomModalProps {
 }
 
 const CustomModal = ({ isOpen, closeModal, children }: CustomModalProps) => {
+  {/*
+  <ul className="absolute inset-0 flex items-center justify-center">*/}
   return (
     <Modal
       isOpen={isOpen}
@@ -21,7 +23,7 @@ const CustomModal = ({ isOpen, closeModal, children }: CustomModalProps) => {
       overlayClassName="overlay"
     >
       <Draggable handle=".modal-header">
-        <div className=" bg-zinc-700 opacity-70 text-white rounded shadow-md max-w-md ">
+        <div className="absolute bg-zinc-700 opacity-70 text-white rounded shadow-md max-w-md max-h-96 inset-3 mt-6 text-center ">
           <div className="flex justify-between items-center p-4 modal-header cursor-move">
             {/* Adicione um ícone ou título para a barra de cabeçalho */}
             <h3>Título do Modal</h3>

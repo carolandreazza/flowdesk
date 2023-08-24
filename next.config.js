@@ -4,7 +4,7 @@ const nextConfig = {
     images: {
         domains: ['source.unsplash.com', 'quotes.rest', 'quote.rest'],
     },    
-    async headers() {
+    /* async headers() {
         return [
             {
                 // matching all API routes
@@ -17,7 +17,7 @@ const nextConfig = {
                 ]
             }
         ]
-    }
+    } */
 
 }
 

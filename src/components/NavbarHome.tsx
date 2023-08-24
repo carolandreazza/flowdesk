@@ -191,7 +191,7 @@ const navListItems = [
 ];
 
 function NavList() {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  /* const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
 
   const openModal = (icon:any) => {
@@ -202,10 +202,27 @@ function NavList() {
   const closeModal = () => {
     setModalContent(null);
     setModalIsOpen(false);
+  }; */
+  
+  interface ModalItem {
+    id: string;
+    isOpen: boolean;
+  }
+  const [modals, setModals] = useState<ModalItem[]>([]);
+
+  const openModal = (modalId: string) => {
+    if (!modals.some(modal => modal.id === modalId)) {
+      setModals([...modals, { id: modalId, isOpen: true }]);
+    }
   };
   
+  const closeModal = (modalId: string) => {
+    setModals(modals.filter(modal => modal.id !== modalId));
+  };
+  
+    
   return (
-    <ul className="mb-4 mt-2 flex flex-col gap-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
+    <ul className="mb-4 mt-2 flex flex-col gap-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center"> 
       {navListItems.map(({ label, icon }, key) => (
         <Typography
           key={label}
@@ -224,9 +241,22 @@ function NavList() {
         </Typography>
       ))}
       
-      <CustomModal isOpen={modalIsOpen} closeModal={closeModal}>
+      {/* <CustomModal isOpen={modalIsOpen} closeModal={closeModal}>
         {modalContent}
-      </CustomModal>
+      </CustomModal> */}
+
+      
+      {modals.map(modal => (
+        <CustomModal
+          key={modal.id}
+          isOpen={modal.isOpen}
+          closeModal={() => closeModal(modal.id)}
+        >
+          {/* Conteúdo do modal */}
+          <p> {modal.id}</p>
+        </CustomModal>
+      ))}
+
 
     </ul>
   );

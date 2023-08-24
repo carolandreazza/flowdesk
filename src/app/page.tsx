@@ -5,27 +5,28 @@ import { useState, useEffect } from "react";
 
 
 export default function Home() {
-  const [hi, setHi] = useState('');
+  const [time, setTime] = useState(''); 
 
   useEffect(() => {
     const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    /* console.log('HI: '+currentTime); */
-    if(currentTime >= '01:00' && currentTime <= '12:59') {
-      setHi('Bom dia!');
-    } else if(currentTime >= '13:00' && currentTime <= '18:59') {
-      setHi('Boa tarde!');
-    } else {
-      setHi('Boa noite!');
-    }
+    setTime(currentTime);
+
+    // Atualiza a hora a cada minuto
+    const interval = setInterval(() => {
+      const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      setTime(currentTime);
+    }, 60000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   return (
-    <div className="bg-nature min-h-screen flex flex-col items-center justify-center">
-      {/* Conteúdo da página */}
-      <h1 className="text-white text-4xl font-bold mb-7">{hi}</h1>
-      {/* <p className="text-white mt-4">Esta é a sua página inicial.</p> */}
-      <MotivacionalQuote />
-     
+    <div className="relative bg-nature min-h-screen flex flex-col items-center justify-center">
+      {/* <h1 className="text-white text-4xl font-bold mb-7">{hi}</h1> */}
+      <div className="time text-white flex items-center text-9xl font-semibold mb-7 pr-8">{time}</div> 
+      <MotivacionalQuote />     
       <NavbarHome />
     </div>
   )

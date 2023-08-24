@@ -4,7 +4,7 @@ import axios from 'axios';
 import { TiWeatherSunny, TiWeatherShower, TiWeatherCloudy, TiWeatherPartlySunny } from 'react-icons/ti';
 
 const WeatherInfo = () => {
-  const [time, setTime] = useState('');
+  const [hi, setHi] = useState('');
   const [temperature, setTemperature] = useState<number>(0);
   const [cityName, setCityName] = useState('');
   const [weatherType, setWeatherType] = useState('');
@@ -17,14 +17,12 @@ const WeatherInfo = () => {
         const response = await axios.get(
           `http://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=1a88a5cb2ed5692e4c95f995f3dfa551&units=metric`
         );
-        const data = response.data;
-        const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const data = response.data;        
         /* const currentTemperature = data.main.temp.toFixed(1); */
         const currentTemperature = Math.round(data.main.temp.toFixed(1));
         const city = data.name;
         const weather = data.weather[0].main.toLowerCase();
 
-        setTime(currentTime);
         setTemperature(currentTemperature);
         setCityName(city);
         setWeatherType(weather);
@@ -35,15 +33,15 @@ const WeatherInfo = () => {
 
     fetchData();
     
-    // Atualiza a hora a cada minuto
-    const interval = setInterval(() => {
-      const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });;
-      setTime(currentTime);
-    }, 60000);
+    const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    if(currentTime >= '01:00' && currentTime <= '12:59') {
+      setHi('Bom dia!');
+    } else if(currentTime >= '13:00' && currentTime <= '18:59') {
+      setHi('Boa tarde!');
+    } else {
+      setHi('Boa noite!');
+    }
 
-    return () => {
-      clearInterval(interval);
-    };
   }, []);
 
   const getLocation = () => {
@@ -83,8 +81,8 @@ const WeatherInfo = () => {
 
   return (
     <div className="weather-widget">{/* className="weather-widget p-4 rounded-lg bg-gray-100" */}  
-      <div className="flex items-center">  
-        <div className="time flex items-center text-2xl pr-8">{time}</div>{/* font-semibold  */}
+      <div className="flex items-center"> 
+        <div className="flex items-center text-lg pr-6">{hi}</div>
         <div className="weather-icon text-2xl">{getWeatherIcon()}</div>
 
        

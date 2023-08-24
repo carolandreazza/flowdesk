@@ -22,7 +22,7 @@ const MotivacionalQuote = () => {
         <div className="motivational-quote">
             <p className="text-white text-xl font-semibold">"{quote}"</p>
             <p className="text-white text-sm text-center">{author}</p>
-        </div>
+        </div>       
     );
 }
 
