@@ -25,12 +25,9 @@ const CustomModal = ({ isOpen, closeModal, children }: CustomModalProps) => {
       <Draggable handle=".modal-header">
         <div className="absolute bg-zinc-700 opacity-70 text-white rounded shadow-md max-w-md max-h-96 inset-3 mt-6 text-center ">
           <div className="flex justify-between items-center p-4 modal-header cursor-move">
-            {/* Adicione um ícone ou título para a barra de cabeçalho */}
-            <h3>Título do Modal</h3>
-            {/* <button onClick={closeModal}>Fechar</button> */}
+          {children}
             <XMarkIcon className='h-[24px] w-[24px] cursor-pointer' onClick={closeModal}></XMarkIcon>
           </div>
-          {children}
         </div>
       </Draggable>
     </Modal>

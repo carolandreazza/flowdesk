@@ -9,7 +9,7 @@ const MotivacionalQuote = () => {
     fetch("../api/quote")
     .then(response => response.json())
         .then(data =>{
-            console.log('data ',data)
+           /*  console.log('data ',data) */
             setQuote(data.data.contents.quotes[0].quote)
             setAuthor(data.data.contents.quotes[0].author)
         })
@@ -20,8 +20,8 @@ const MotivacionalQuote = () => {
 
     return (
         <div className="motivational-quote">
-            <p className="text-white text-xl font-semibold">"{quote}"</p>
-            <p className="text-white text-sm text-center">{author}</p>
+            <p className="text-white text-2xl font-medium drop-shadow-lg shadow-black">"{quote}"</p>
+            <p className="text-white text-2sm text-center drop-shadow-lg shadow-black">{author}</p>
         </div>       
     );
 }

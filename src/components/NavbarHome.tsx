@@ -186,14 +186,14 @@ const navListItems = [
   },
   {
     label: "FullScreen",
-    icon: ViewfinderCircleIcon,
+    icon: ViewfinderCircleIcon
   },
 ];
 
 function NavList() {
   /* const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
-
+]
   const openModal = (icon:any) => {
     setModalContent(icon);
     setModalIsOpen(true);
@@ -207,12 +207,22 @@ function NavList() {
   interface ModalItem {
     id: string;
     isOpen: boolean;
+    /* content: string; */
   }
   const [modals, setModals] = useState<ModalItem[]>([]);
+  const [content, setContent] = useState('');
+  
 
   const openModal = (modalId: string) => {
+    
+   /*  console.log('modalI: ', modalId)
+    if (modalId === 'FullScreen') {
+      setContent(modalId + ' TESTE');
+    } else if (modalId === 'Timer') {
+        setContent('TIMER TESTE');
+    } */
     if (!modals.some(modal => modal.id === modalId)) {
-      setModals([...modals, { id: modalId, isOpen: true }]);
+      setModals([...modals, { id: modalId, isOpen: true}]);/* , content:content  */
     }
   };
   
@@ -254,6 +264,7 @@ function NavList() {
         >
           {/* Conteúdo do modal */}
           <p> {modal.id}</p>
+         {/*  <p> {modal.content}</p> */}
         </CustomModal>
       ))}
 
