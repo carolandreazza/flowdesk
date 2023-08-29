@@ -14,9 +14,8 @@ const WeatherInfo = () => {
     const fetchData = async () => {
       try {
         const location = await getLocation();
-        console.log("city ", `http://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=1a88a5cb2ed5692e4c95f995f3dfa551&units=metric`)
         const response = await axios.get(
-          `http://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=1a88a5cb2ed5692e4c95f995f3dfa551&units=metric`
+          `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=1a88a5cb2ed5692e4c95f995f3dfa551&units=metric`
         );
         const data = response.data;        
         /* const currentTemperature = data.main.temp.toFixed(1); */
