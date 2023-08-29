@@ -1,7 +1,7 @@
 /* Example: https://www.material-tailwind.com/docs/react/navbar# */
 'use client'
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   Collapse,
@@ -180,15 +180,33 @@ function PopupChart() {
   );
 }
 
-function FullScreen() {
+function FullScreen() {    
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  const toggleFullscreen = () => {
+    if (!isFullscreen) {
+      document.documentElement.requestFullscreen().catch(err => {
+        console.log(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+      });
+    } else {
+      document.exitFullscreen();
+    }
+    setIsFullscreen(prevState => !prevState);
+  };
+
   return (
-    <div>
-      <h1>TESTE</h1>
-      <p>checklist</p>
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="p-4 bg-gray-100 rounded-lg shadow-md">
+        <h1 className="text-2xl font-semibold mb-4">Fullscreen Example</h1>
+        <p>This is a fullscreen example using Tailwind CSS in Next.js.</p>
+        <button onClick={toggleFullscreen} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+          Toggle Fullscreen
+        </button>
+      </div>
     </div>
   );
 }
- 
+
 // nav list component
 const navListItems = [
  /*  {
@@ -196,54 +214,67 @@ const navListItems = [
     icon: ForwardIcon,
   }, */
   {
+    /* id: "Start", */
     label: "Start",
     icon: PlayCircleIcon,
   },
   {
+   /*  id: "Start", */
     label: "Stop",
     icon: StopCircleIcon,
   },
   {
+    /* id: "Next", */
     label: "Next",
     icon: ForwardIcon,
   },
   {
+   /*  id: "s0", */
     label: "",
     icon: EllipsisVerticalIcon,
   },
   {
+    /* id: "Preferences", */
     label: "Preferences",
     icon: AdjustmentsVerticalIcon,
   },
   {
+   /*  id: "s1", */
     label: "",
     icon: EllipsisVerticalIcon,
   },
   {
+    /* id: "CheckList", */
     label: "CheckList",
     icon: ClipboardIcon,
   },
   {
+   /*  id: "Notes", */
     label: "Notes",
     icon: ChatBubbleBottomCenterTextIcon,
   },
   {
+    /* id: "Calendar", */
     label: "Calendar",
     icon: CalendarIcon,
   },
   {
+    /* id: "Timer", */
     label: "Timer",
     icon: ClockIcon,
   },
   {
+   /*  id: "s2", */
     label: "",
     icon: EllipsisVerticalIcon,
   },
   {
+    /* id: "Chart", */
     label: "Chart",
     icon: ChartBarIcon,
   },
   {
+    /* id: "s3", */
     label: "",
     icon: EllipsisVerticalIcon,
   },
@@ -257,17 +288,35 @@ function NavList() {
 
   interface ModalItem {
     id: string;
+    label: string;
     isOpen: boolean;
   }
-  const [modals, setModals] = useState<ModalItem[]>([]);  
+  const [modals, setModals] = useState<ModalItem[]>([]); 
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  
+  const toggleFullscreen = () => {
+    if (!isFullscreen) {
+      document.documentElement.requestFullscreen().catch(err => {
+        console.log(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+      });
+    } else {
+      document.exitFullscreen();
+    }
+    setIsFullscreen(prevState => !prevState);
+  };
+
+
 
   const openModal = (modalId: string) => {
     
     console.log(modalId)
     if (modalId === 'Start' || modalId === 'Stop' || modalId === 'Next' || modalId === '') {
       console.log(modalId);
+    } else if (modalId === 'FullScreen') {
+      toggleFullscreen();
     } else if (!modals.some(modal => modal.id === modalId)) {      
-      setModals([...modals, { id: modalId, isOpen: true}]);
+      setModals([...modals, { id: modalId, label: modalId, isOpen: true}]);
     }
   };
   
@@ -278,9 +327,9 @@ function NavList() {
     
   return (
     <ul className="mb-4 mt-2 flex flex-col gap-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center"> 
-      {navListItems.map(({ label, icon }, key) => (
+      {navListItems.map(({ label, icon }, index) => (
         <Typography
-          key={label}
+          key={index}
           as="a"
           href="#"
           variant="small"
@@ -320,8 +369,8 @@ function NavList() {
                 return <PopupTimer />;
               case 'Chart':
                 return <PopupChart />;
-              case 'FullScreen':
-                return <FullScreen />;
+              /* case 'FullScreen':
+                return <FullScreen />; */
               default:
                 return null; 
             }
