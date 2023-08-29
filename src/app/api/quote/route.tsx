@@ -9,7 +9,7 @@ export async function GET() {
     headers: {
       'Content-Type': 'application/json',
       'cache-control': 'no-cache,private',
-      'X-TheySaidSo-Api-Secret': API_KEY,
+      'X-TheySaidSo-Api-Secret': "7VTgHh3l9VvUTgj2wuQ59L4bBvo0tqhuvZFYbaW9",
     },
   })
   const data = await res.json()
