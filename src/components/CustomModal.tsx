@@ -1,6 +1,6 @@
 'use client'
-import React from 'react';
-import Modal from 'react-modal';
+import React, { useEffect } from 'react';
+import Modal, { setAppElement } from 'react-modal';
 import Draggable from 'react-draggable';
 import {
     XMarkIcon,
@@ -13,14 +13,14 @@ interface CustomModalProps {
 }
 
 const CustomModal = ({ isOpen, closeModal, children }: CustomModalProps) => {
-  {/*
-  <ul className="absolute inset-0 flex items-center justify-center">*/}
+  
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={closeModal}
       className="modal"
       overlayClassName="overlay"
+      ariaHideApp={false}
     >
       <Draggable handle=".modal-header">
         <div className="absolute bg-zinc-700 opacity-70 text-white rounded shadow-md max-w-md max-h-96 inset-3 mt-6 text-center ">

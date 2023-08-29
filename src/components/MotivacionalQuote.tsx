@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 
 const MotivacionalQuote = () => {
     const [quote, setQuote] = useState('')
@@ -9,7 +9,6 @@ const MotivacionalQuote = () => {
     fetch("../api/quote")
     .then(response => response.json())
         .then(data =>{
-           /*  console.log('data ',data) */
             setQuote(data.data.contents.quotes[0].quote)
             setAuthor(data.data.contents.quotes[0].author)
         })

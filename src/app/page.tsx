@@ -24,7 +24,6 @@ export default function Home() {
 
   return (
     <div className="relative bg-nature min-h-screen flex flex-col items-center justify-center">
-      {/* <h1 className="text-white text-4xl font-bold mb-7">{hi}</h1> */}
       <div className=" bg-black bg-opacity-20 p-8 rounded-xl">
         <div className="time text-white flex items-center text-9xl font-medium mb-7 pr-8 justify-around">
           <p className="drop-shadow-lg shadow-black">{time}</p>

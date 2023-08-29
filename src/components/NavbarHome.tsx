@@ -93,17 +93,17 @@ function ProfileMenu() {
           />
         </Button>
       </MenuHandler>
-      <MenuList className="p-1">
+      <MenuList className="p-2 bg-zinc-700 text-white border-0 ">
         {profileMenuItems.map(({ label, icon }, key) => {
           const isLastItem = key === profileMenuItems.length - 1;
           return (
             <MenuItem
               key={label}
               onClick={closeMenu}
-              className={`flex items-center gap-2 rounded ${
+              className={` bg-zinc-700 flex items-center gap-2 rounded ${
                 isLastItem
                   ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
-                  : ""
+                  : "hover:bg-zinc-500/10"
               }`}
             >
               {React.createElement(icon, {
@@ -126,6 +126,69 @@ function ProfileMenu() {
   );
 }
  
+function Preferences() {
+  return (
+    <div>
+      <h1>TESTEPreferences</h1>
+      <p>Preferences</p>
+    </div>
+  );
+}
+ 
+function PopupCheckList() {
+  return (
+    <div>
+      <h1>TESTE</h1>
+      <p>checklist</p>
+    </div>
+  );
+}
+
+function PopupNotes() {
+  return (
+    <div>
+      <h1>TESTE</h1>
+      <p>checklist</p>
+    </div>
+  );
+}
+
+function PopupCalendar() {
+  return (
+    <div>
+      <h1>TESTE</h1>
+      <p>checklist</p>
+    </div>
+  );
+}
+
+function PopupTimer() {
+  return (
+    <div>
+      <h1>TESTE</h1>
+      <p>checklist</p>
+    </div>
+  );
+}
+
+function PopupChart() {
+  return (
+    <div>
+      <h1>TESTE</h1>
+      <p>checklist</p>
+    </div>
+  );
+}
+
+function FullScreen() {
+  return (
+    <div>
+      <h1>TESTE</h1>
+      <p>checklist</p>
+    </div>
+  );
+}
+ 
 // nav list component
 const navListItems = [
  /*  {
@@ -145,7 +208,7 @@ const navListItems = [
     icon: ForwardIcon,
   },
   {
-    label: "Sep",
+    label: "",
     icon: EllipsisVerticalIcon,
   },
   {
@@ -153,7 +216,7 @@ const navListItems = [
     icon: AdjustmentsVerticalIcon,
   },
   {
-    label: "Sep1",
+    label: "",
     icon: EllipsisVerticalIcon,
   },
   {
@@ -173,7 +236,7 @@ const navListItems = [
     icon: ClockIcon,
   },
   {
-    label: "Sep2",
+    label: "",
     icon: EllipsisVerticalIcon,
   },
   {
@@ -181,7 +244,7 @@ const navListItems = [
     icon: ChartBarIcon,
   },
   {
-    label: "Sep3",
+    label: "",
     icon: EllipsisVerticalIcon,
   },
   {
@@ -191,38 +254,20 @@ const navListItems = [
 ];
 
 function NavList() {
-  /* const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [modalContent, setModalContent] = useState(null);
-]
-  const openModal = (icon:any) => {
-    setModalContent(icon);
-    setModalIsOpen(true);
-  };
 
-  const closeModal = () => {
-    setModalContent(null);
-    setModalIsOpen(false);
-  }; */
-  
   interface ModalItem {
     id: string;
     isOpen: boolean;
-    /* content: string; */
   }
-  const [modals, setModals] = useState<ModalItem[]>([]);
-  const [content, setContent] = useState('');
-  
+  const [modals, setModals] = useState<ModalItem[]>([]);  
 
   const openModal = (modalId: string) => {
     
-   /*  console.log('modalI: ', modalId)
-    if (modalId === 'FullScreen') {
-      setContent(modalId + ' TESTE');
-    } else if (modalId === 'Timer') {
-        setContent('TIMER TESTE');
-    } */
-    if (!modals.some(modal => modal.id === modalId)) {
-      setModals([...modals, { id: modalId, isOpen: true}]);/* , content:content  */
+    console.log(modalId)
+    if (modalId === 'Start' || modalId === 'Stop' || modalId === 'Next' || modalId === '') {
+      console.log(modalId);
+    } else if (!modals.some(modal => modal.id === modalId)) {      
+      setModals([...modals, { id: modalId, isOpen: true}]);
     }
   };
   
@@ -242,19 +287,16 @@ function NavList() {
           color="blue-gray"
           className="font-normal"
         >
-          <MenuItem className="flex items-center gap-2 lg:rounded-full">
-            {React.createElement(icon, { className: "h-[24px] w-[24px] hover:text-black",
-              onClick: () => openModal(label), })}
-            {/*{" "} {label} */}
+          <MenuItem className="group/item flex items-center gap-2 lg:rounded-full">
+              {React.createElement(icon, { className: "h-[24px] w-[24px] hover:text-black",
+                onClick: () => openModal(label), })}
+                <div className="group/edit invisible group-hover/item:visible absolute bottom-9 mt-8 bg-gray-200 opacity-60 text-gray-900 font-bold p-2 rounded">
+                   {label}
+                </div>
           </MenuItem>
           
         </Typography>
       ))}
-      
-      {/* <CustomModal isOpen={modalIsOpen} closeModal={closeModal}>
-        {modalContent}
-      </CustomModal> */}
-
       
       {modals.map(modal => (
         <CustomModal
@@ -264,7 +306,26 @@ function NavList() {
         >
           {/* Conteúdo do modal */}
           <p> {modal.id}</p>
-         {/*  <p> {modal.content}</p> */}
+          {(() => {
+            switch (modal.id) {
+              case 'Preferences':
+                return <Preferences />;
+              case 'CheckList':
+                return <PopupCheckList />;
+              case 'Notes':
+                return <PopupNotes />;
+              case 'Calendar':
+                return <PopupCalendar />;
+              case 'Timer':
+                return <PopupTimer />;
+              case 'Chart':
+                return <PopupChart />;
+              case 'FullScreen':
+                return <FullScreen />;
+              default:
+                return null; 
+            }
+          })()}
         </CustomModal>
       ))}
 
@@ -292,16 +353,19 @@ export default function ComplexNavbar() {
         <EllipsisVerticalIcon
           className="h-6 w-6 absolute top-2/4 left-48 hidden -translate-x-2/3 -translate-y-2/4 lg:block"
         > </EllipsisVerticalIcon>
-        <HomeIcon
-          className="h-6 w-6 absolute top-2/4 left-56 hidden -translate-x-2/3 -translate-y-2/4 lg:block"
-        >          
-        </HomeIcon>         
+        <a href="https://caroldev.vercel.app/" target="blank">
+          <HomeIcon
+            className="h-6 w-6 absolute top-2/4 left-56 hidden -translate-x-2/3 -translate-y-2/4 lg:block"          
+          >          
+          </HomeIcon>
+        </a>
         <EllipsisVerticalIcon
           className="h-6 w-6 absolute top-2/4 left-64 hidden -translate-x-2/3 -translate-y-2/4 lg:block"
         > </EllipsisVerticalIcon>
         <div className="absolute top-2/4 left-2/3 hidden -translate-x-2/3 -translate-y-2/4 lg:block">
           <NavList />
         </div>
+        <ProfileMenu />
         <IconButton
           size="sm"
           color="blue-gray"
@@ -311,7 +375,6 @@ export default function ComplexNavbar() {
         >
           <Bars2Icon className="h-6 w-6" />
         </IconButton>
-        <ProfileMenu />
       </div>
       <Collapse open={isNavOpen} className="overflow-scroll">
         <NavList />
