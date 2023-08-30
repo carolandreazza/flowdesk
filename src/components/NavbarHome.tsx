@@ -33,6 +33,8 @@ import {
   EllipsisVerticalIcon,
   StopCircleIcon,
   ForwardIcon,
+  ChevronUpIcon,
+  Bars3Icon,
 } from "@heroicons/react/24/outline";
 import WeatherInfo from "./WeatherInfo";
 import CustomModal from "./CustomModal";
@@ -72,7 +74,7 @@ function ProfileMenu() {
         <Button
           variant="text"
           color="blue-gray"
-          className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
+          className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 ml-auto"/* lg:ml-auto */
         >
          {/*  <Avatar
             variant="circular"
@@ -85,7 +87,7 @@ function ProfileMenu() {
           strokeWidth={1.5}
           className="w-6 h-6"
           />
-          <ChevronDownIcon
+          <ChevronUpIcon
             strokeWidth={2.5}
             className={`h-3 w-3 transition-transform ${
               isMenuOpen ? "rotate-180" : ""
@@ -176,33 +178,6 @@ function PopupChart() {
     <div>
       <h1>TESTE</h1>
       <p>checklist</p>
-    </div>
-  );
-}
-
-function FullScreen() {    
-  const [isFullscreen, setIsFullscreen] = useState(false);
-
-  const toggleFullscreen = () => {
-    if (!isFullscreen) {
-      document.documentElement.requestFullscreen().catch(err => {
-        console.log(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-      });
-    } else {
-      document.exitFullscreen();
-    }
-    setIsFullscreen(prevState => !prevState);
-  };
-
-  return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="p-4 bg-gray-100 rounded-lg shadow-md">
-        <h1 className="text-2xl font-semibold mb-4">Fullscreen Example</h1>
-        <p>This is a fullscreen example using Tailwind CSS in Next.js.</p>
-        <button onClick={toggleFullscreen} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-          Toggle Fullscreen
-        </button>
-      </div>
     </div>
   );
 }
@@ -400,7 +375,7 @@ export default function ComplexNavbar() {
       <div className="relative mx-auto flex items-center text-blue-gray-900">
         <WeatherInfo />
         <EllipsisVerticalIcon
-          className="h-6 w-6 absolute top-2/4 left-48 hidden -translate-x-2/3 -translate-y-2/4 lg:block"
+          className="h-6 w-6 absolute top-2/4 left-48 hidden -translate-x-2/3 -translate-y-2/4 lg:block" /* hidden */
         > </EllipsisVerticalIcon>
         <a href="https://caroldev.vercel.app/" target="blank">
           <HomeIcon
@@ -413,21 +388,23 @@ export default function ComplexNavbar() {
         > </EllipsisVerticalIcon>
         <div className="absolute top-2/4 left-2/3 hidden -translate-x-2/3 -translate-y-2/4 lg:block">
           <NavList />
-        </div>
-        <ProfileMenu />
-        <IconButton
+        </div>        
+        <div className="h-6 w-6 absolute top-2/4 right-10 hidden -translate-x-2/3 -translate-y-2/4 lg:block">
+          <ProfileMenu />
+        </div>        
+        {/* <IconButton
           size="sm"
           color="blue-gray"
           variant="text"
           onClick={toggleIsNavOpen}
-          className="ml-auto mr-2 lg:hidden"
+          className="ml-auto mr-12 mb-6 lg:hidden"
         >
-          <Bars2Icon className="h-6 w-6" />
-        </IconButton>
+          <Bars3Icon className="h-6 w-6" />
+        </IconButton> */}
       </div>
-      <Collapse open={isNavOpen} className="overflow-scroll">
+      {/* <Collapse open={isNavOpen} className="overflow-scroll">
         <NavList />
-      </Collapse>
+      </Collapse> */}
     </Navbar>
   );
 }

@@ -14,3 +14,4 @@
 This project is about building a "productivity workspace," initially titled as FlowDesk, with the goal of serving as a means to aid in maintaining daily focus and measuring productivity, or simply as a background screen for television/computer where tasks and notes remain visible.
 
 In this application, the user will be able to create a task list (ToDo), plan tasks for the day, write notes, time their work using the Pomodoro technique, play background music, or connect to their Spotify account, and access a chart of hours worked upon creating a login. The background consists of random images from an image bank that can later be customized.
+

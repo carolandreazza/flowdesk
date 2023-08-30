@@ -19,7 +19,7 @@ const MotivacionalQuote = () => {
 
     return (
         <div className="motivational-quote">
-            <p className="text-white text-2xl font-medium drop-shadow-lg shadow-black">"{quote}"</p>
+            <p className="text-white text-2xl font-medium drop-shadow-lg shadow-black text-center">"{quote}"</p>
             <p className="text-white text-2sm text-center drop-shadow-lg shadow-black">{author}</p>
         </div>       
     );
