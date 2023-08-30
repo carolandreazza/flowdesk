@@ -35,9 +35,11 @@ import {
   ForwardIcon,
   ChevronUpIcon,
   Bars3Icon,
+  CodeBracketIcon,
 } from "@heroicons/react/24/outline";
 import WeatherInfo from "./WeatherInfo";
 import CustomModal from "./CustomModal";
+import TodoList from "./TodoList";
  
 // profile menu component
 const profileMenuItems = [
@@ -140,8 +142,7 @@ function Preferences() {
 function PopupCheckList() {
   return (
     <div>
-      <h1>TESTE</h1>
-      <p>checklist</p>
+      <TodoList />
     </div>
   );
 }
@@ -329,7 +330,7 @@ function NavList() {
           closeModal={() => closeModal(modal.id)}
         >
           {/* Conteúdo do modal */}
-          <p> {modal.id}</p>
+          {/* <p> {modal.id}</p> */}
           {(() => {
             switch (modal.id) {
               case 'Preferences':
@@ -374,6 +375,7 @@ export default function ComplexNavbar() {
     <Navbar className=" border-0 fixed bottom-10 w-full xl:mx-auto max-w-screen-xl p-2 lg:rounded-md lg:pl-6 bg-zinc-700 md:max-w-screen-lg sm:max-w-screen-sm">
       <div className="relative mx-auto flex items-center text-blue-gray-900">
         <WeatherInfo />
+        <p className=" lg:hidden"> PARA UMA MELHOR EXPERIÊNCIA, ACESSE EM UMA TELA MAIOR COMO UM TABLET, DESKTOP OU TV!</p>
         <EllipsisVerticalIcon
           className="h-6 w-6 absolute top-2/4 left-48 hidden -translate-x-2/3 -translate-y-2/4 lg:block" /* hidden */
         > </EllipsisVerticalIcon>
@@ -389,7 +391,12 @@ export default function ComplexNavbar() {
         <div className="absolute top-2/4 left-2/3 hidden -translate-x-2/3 -translate-y-2/4 lg:block">
           <NavList />
         </div>        
-        <div className="h-6 w-6 absolute top-2/4 right-10 hidden -translate-x-2/3 -translate-y-2/4 lg:block">
+        <div className="h-6 w-6 absolute top-2/4 right-20 hidden -translate-x-2/3 -translate-y-2/4 lg:block">
+          <a href="https://github.com/carolandreazza/flowdesk" target="blank">
+            <CodeBracketIcon />
+          </a>
+        </div>        
+        <div className="h-6 w-6 absolute top-2/4 right-8 hidden -translate-x-2/3 -translate-y-2/4 lg:block">
           <ProfileMenu />
         </div>        
         {/* <IconButton

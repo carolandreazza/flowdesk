@@ -1,4 +1,5 @@
 'use client'
+import CLinks from "@/components/CLinks";
 import MotivacionalQuote from "@/components/MotivacionalQuote";
 import NavbarHome from "@/components/NavbarHome";
 import { ChevronDownIcon, ChevronUpIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
@@ -66,6 +67,7 @@ function Links() {
             </MenuItem>
           );
         })}
+        <CLinks />
       </MenuList>
     </Menu>
   );

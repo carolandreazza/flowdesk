@@ -86,25 +86,18 @@ const WeatherInfo = () => {
   };
 
   return (
-    <div className="weather-widget">
+    <div className="weather-widget ">
       <div className="flex items-center"> 
         <div className="flex items-center text-lg pr-6">{hi}</div>
-        <div className="weather-icon text-2xl">{getWeatherIcon()}</div>
+        <div className="weather-icon text-2xl sm:hidden lg:block">{getWeatherIcon()}</div>
 
        
-        <div className="relative group/item">
+        <div className="relative group/item sm:hidden lg:block">
           <span
             className="cursor-pointer p-2 rounded-md text-2xl pr-7"
-            /* onMouseEnter={() => setShowTooltip(true)}
-            onMouseLeave={() => setShowTooltip(false)} */
           >
             {temperature}&deg;
           </span>
-          {/* {showTooltip && (
-            <div className="absolute bottom-10 left-0 mt-8 bg-gray-200 opacity-60 text-gray-900 font-bold p-2 rounded">
-             {cityName}
-            </div>
-          )} */}
           <div className="group/edit invisible group-hover/item:visible absolute bottom-10 mt-8 bg-gray-200 opacity-60 text-gray-900 font-bold p-2 rounded">
               {cityName}
           </div>
