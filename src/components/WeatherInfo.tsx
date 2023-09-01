@@ -88,11 +88,11 @@ const WeatherInfo = () => {
   return (
     <div className="weather-widget ">
       <div className="flex items-center"> 
-        <div className="flex items-center text-lg pr-6">{hi}</div>
-        <div className="weather-icon text-2xl sm:hidden lg:block">{getWeatherIcon()}</div>
+        <div className="flex items-center text-lg pr-3">{hi}</div>
+        <div className="weather-icon text-2xl lg:block">{getWeatherIcon()}</div>
 
-       
-        <div className="relative group/item sm:hidden lg:block">
+       <div className="hidden md:block">
+        <div className="relative group/item lg:block">
           <span
             className="cursor-pointer p-2 rounded-md text-2xl pr-7"
           >
@@ -102,6 +102,7 @@ const WeatherInfo = () => {
               {cityName}
           </div>
         </div>
+      </div>
 
       </div>      
     </div>

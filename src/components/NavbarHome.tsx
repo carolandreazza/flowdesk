@@ -40,6 +40,7 @@ import {
 import WeatherInfo from "./WeatherInfo";
 import CustomModal from "./CustomModal";
 import TodoList from "./TodoList";
+import MusicPlayer from "./MusicPlayer";
  
 // profile menu component
 const profileMenuItems = [
@@ -62,6 +63,21 @@ const profileMenuItems = [
   {
     label: "Sign Out",
     icon: PowerIcon,
+  },
+];
+
+const musics = [
+  {
+    label: "Música 1",
+    link: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3"
+  },
+  {
+    label: "Link 2",
+    link: "https://caroldev.vercel.app/"
+  },
+  {
+    label: "Link 3",
+    link: "https://caroldev.vercel.app/",
   },
 ];
  
@@ -130,11 +146,27 @@ function ProfileMenu() {
   );
 }
  
-function Preferences() {
+function PopupMusic() {
+  
+  const audioSrc = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3";
+
   return (
     <div>
-      <h1>TESTEPreferences</h1>
-      <p>Preferences</p>
+      <h1>Music Player</h1>
+      <MusicPlayer src={audioSrc} />
+      {musics.map(({ label, link }, key) => {
+          const isLastItem = key === musics.length - 1;
+          return (
+            <Typography
+              as="span"
+              variant="small"
+              className="font-normal"
+              color="inherit"                
+            >
+              {label}
+            </Typography>
+          );
+        })}
     </div>
   );
 }
@@ -160,7 +192,7 @@ function PopupCalendar() {
   return (
     <div>
       <h1>TESTE</h1>
-      <p>checklist</p>
+      <p>PopupCalendar</p>
     </div>
   );
 }
@@ -169,7 +201,7 @@ function PopupTimer() {
   return (
     <div>
       <h1>TESTE</h1>
-      <p>checklist</p>
+      <p>PopupTimer</p>
     </div>
   );
 }
@@ -178,7 +210,7 @@ function PopupChart() {
   return (
     <div>
       <h1>TESTE</h1>
-      <p>checklist</p>
+      <p>PopupChart</p>
     </div>
   );
 }
@@ -189,36 +221,30 @@ const navListItems = [
     label: "Próxima",
     icon: ForwardIcon,
   }, */
-  {
-    /* id: "Start", */
+  /* {
     label: "Start",
     icon: PlayCircleIcon,
   },
   {
-   /*  id: "Start", */
     label: "Stop",
     icon: StopCircleIcon,
   },
   {
-    /* id: "Next", */
     label: "Next",
     icon: ForwardIcon,
-  },
+  }, */
   {
-   /*  id: "s0", */
-    label: "",
-    icon: EllipsisVerticalIcon,
+    label: "Player",
+    icon: PlayCircleIcon,
   },
-  {
-    /* id: "Preferences", */
-    label: "Preferences",
+  /* {
+    label: "Preferências",
     icon: AdjustmentsVerticalIcon,
-  },
-  {
-   /*  id: "s1", */
+  }, */
+  /* {
     label: "",
     icon: EllipsisVerticalIcon,
-  },
+  }, */
   {
     /* id: "CheckList", */
     label: "CheckList",
@@ -226,12 +252,12 @@ const navListItems = [
   },
   {
    /*  id: "Notes", */
-    label: "Notes",
+    label: "Notas",
     icon: ChatBubbleBottomCenterTextIcon,
   },
   {
     /* id: "Calendar", */
-    label: "Calendar",
+    label: "Calendário",
     icon: CalendarIcon,
   },
   {
@@ -246,7 +272,7 @@ const navListItems = [
   },
   {
     /* id: "Chart", */
-    label: "Chart",
+    label: "Gráfico",
     icon: ChartBarIcon,
   },
   {
@@ -302,7 +328,7 @@ function NavList() {
   
     
   return (
-    <ul className="mb-4 mt-2 flex flex-col gap-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center"> 
+    <ul className="mb-4 mt-2 flex flex-col gap-3  lg:mb-0 lg:mt-0 lg:flex-row lg:items-center"> 
       {navListItems.map(({ label, icon }, index) => (
         <Typography
           key={index}
@@ -333,17 +359,17 @@ function NavList() {
           {/* <p> {modal.id}</p> */}
           {(() => {
             switch (modal.id) {
-              case 'Preferences':
-                return <Preferences />;
+              case 'Player':
+                return <PopupMusic />;
               case 'CheckList':
                 return <PopupCheckList />;
-              case 'Notes':
+              case 'Notas':
                 return <PopupNotes />;
-              case 'Calendar':
+              case 'Calendário':
                 return <PopupCalendar />;
               case 'Timer':
                 return <PopupTimer />;
-              case 'Chart':
+              case 'Gráfico':
                 return <PopupChart />;
               /* case 'FullScreen':
                 return <FullScreen />; */
@@ -372,10 +398,10 @@ export default function ComplexNavbar() {
   }, []);
  
   return (
-    <Navbar className=" border-0 fixed bottom-10 w-full xl:mx-auto max-w-screen-xl p-2 lg:rounded-md lg:pl-6 bg-zinc-700 md:max-w-screen-lg sm:max-w-screen-sm">
+    <Navbar className=" border-0 fixed bottom-10 w-full xl:mx-auto max-w-screen-xl p-2 lg:rounded-md lg:pl-6 bg-zinc-700 md:max-w-screen-md sm:max-w-screen-sm">
       <div className="relative mx-auto flex items-center text-blue-gray-900">
         <WeatherInfo />
-        <p className=" lg:hidden"> PARA UMA MELHOR EXPERIÊNCIA, ACESSE EM UMA TELA MAIOR COMO UM TABLET, DESKTOP OU TV!</p>
+        <p className=" lg:hidden"> Para uma melhor experiência, acesse em uma tela maior como um tablet, desktop ou TV.</p>
         <EllipsisVerticalIcon
           className="h-6 w-6 absolute top-2/4 left-48 hidden -translate-x-2/3 -translate-y-2/4 lg:block" /* hidden */
         > </EllipsisVerticalIcon>
@@ -387,16 +413,19 @@ export default function ComplexNavbar() {
         </a>
         <EllipsisVerticalIcon
           className="h-6 w-6 absolute top-2/4 left-64 hidden -translate-x-2/3 -translate-y-2/4 lg:block"
-        > </EllipsisVerticalIcon>
-        <div className="absolute top-2/4 left-2/3 hidden -translate-x-2/3 -translate-y-2/4 lg:block">
+        > </EllipsisVerticalIcon>        
+        <div className="absolute top-2/4 left-[17rem] hidden -translate-y-2/4 lg:block">
           <NavList />
         </div>        
-        <div className="h-6 w-6 absolute top-2/4 right-20 hidden -translate-x-2/3 -translate-y-2/4 lg:block">
+        <EllipsisVerticalIcon
+          className="h-6 w-6 absolute top-2/4 right-20 hidden -translate-x-2/3 -translate-y-2/4 lg:block"
+        > </EllipsisVerticalIcon>  
+        <div className="h-6 w-6 absolute top-2/4 right-12 hidden -translate-x-2/3 -translate-y-2/4 lg:block">
           <a href="https://github.com/carolandreazza/flowdesk" target="blank">
             <CodeBracketIcon />
           </a>
         </div>        
-        <div className="h-6 w-6 absolute top-2/4 right-8 hidden -translate-x-2/3 -translate-y-2/4 lg:block">
+        <div className="h-6 w-6 absolute top-2/4 right-4 hidden -translate-x-2/3 -translate-y-2/4 lg:block">
           <ProfileMenu />
         </div>        
         {/* <IconButton
